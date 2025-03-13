@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f75c1f4dc995aab41a39c1ceafe8a753
+guid: b9011295ef0a44b408381a1f9d7a6934
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background animation-sheet_0
+      name: magic spell_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 1920
-        height: 1080
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35763712723617f4b80a699c5df4405f
-      internalID: 1959334218
+      spriteID: 8f369a6025d222449add7bcc1ec2b5bb
+      internalID: 736827022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Background animation-sheet_1
+      name: magic spell_1
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 2
-        width: 1920
-        height: 1080
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,92 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 238406e700890134c8a6dc151c1776ba
-      internalID: 343014647
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background animation-sheet_2
-      rect:
-        serializedVersion: 2
-        x: 3840
-        y: 2
-        width: 1920
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f17f303a3a8b50d49a239488e2c30c93
-      internalID: 123369259
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background animation-sheet_3
-      rect:
-        serializedVersion: 2
-        x: 5760
-        y: 2
-        width: 1920
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d721a7a6801992844a8b2643150a3450
-      internalID: -494734156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background animation-sheet_4
-      rect:
-        serializedVersion: 2
-        x: 7680
-        y: 2
-        width: 1920
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c5fa630959e52a40a2f84d12295e2de
-      internalID: 329570679
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background animation-sheet_5
-      rect:
-        serializedVersion: 2
-        x: 9600
-        y: 2
-        width: 1920
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3da640b7dac77ae489914f70a2d3fec4
-      internalID: -472687128
+      spriteID: 30b0b034ba4401a43973969cd1901a1c
+      internalID: -1318236066
       vertices: []
       indices: 
       edges: []
@@ -259,12 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Background animation-sheet_0: 1959334218
-      Background animation-sheet_1: 343014647
-      Background animation-sheet_2: 123369259
-      Background animation-sheet_3: -494734156
-      Background animation-sheet_4: 329570679
-      Background animation-sheet_5: -472687128
+      magic spell_0: 736827022
+      magic spell_1: -1318236066
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
