@@ -4,10 +4,12 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(EnemyMovement))]
+[RequireComponent(typeof(Animator))]
 public class Enemy : MonoBehaviour
 {
     [Header(" Components ")]
     private EnemyMovement movement;
+    private Animator animator;
 
     [Header(" Elements ")]
     [SerializeField] Player player;
@@ -23,6 +25,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float playerDetectionRadius;
     private float attackDelay;
     private float attackTimer;
+    private bool isAttacking = false;
+    private Vector2 lastAttackDirection;
 
     [Header(" Debug ")]
     [SerializeField] private bool gizmos;
@@ -31,6 +35,21 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         movement = GetComponent<EnemyMovement>();
+        animator = GetComponent<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator component not found on enemy!");
+            enabled = false;
+            return;
+        }
+
+        if (enemyRenderer == null)
+        {
+            Debug.LogError("Enemy Renderer not assigned!");
+            enabled = false;
+            return;
+        }
 
         player = FindFirstObjectByType<Player>();
 
@@ -38,11 +57,15 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogWarning("No player found");
             Destroy(gameObject);
+            return;
         }
 
         StartSpawnSequence();
 
         attackDelay = 1f / attackFrequency;
+        
+        // Устанавливаем расстояние остановки в зависимости от радиуса атаки
+        movement.SetStopDistance(playerDetectionRadius);
     }
 
     private void StartSpawnSequence()
@@ -71,10 +94,35 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (attackTimer >= attackDelay)
-            TryAttack();
+        if (!hasSpawned || player == null || enemyRenderer == null) return;
+
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        
+        // Обновляем направление и отзеркаливание
+        Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
+        if (directionToPlayer.magnitude > 0.1f)
+        {
+            lastAttackDirection = directionToPlayer;
+            enemyRenderer.flipX = directionToPlayer.x > 0;
+        }
+        
+        // Если враг в радиусе атаки
+        if (distanceToPlayer <= playerDetectionRadius)
+        {
+            if (attackTimer >= attackDelay)
+            {
+                Attack();
+            }
+            else
+            {
+                Wait();
+            }
+        }
         else
-            Wait();
+        {
+            // Если враг вне радиуса атаки, сбрасываем таймер
+            attackTimer = 0;
+        }
     }
 
     private void Wait()
@@ -82,20 +130,38 @@ public class Enemy : MonoBehaviour
         attackTimer += Time.deltaTime;
     }
 
-    private void TryAttack()
-    {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
-        if (distanceToPlayer <= playerDetectionRadius)
-            Attack();
-    }
-
     private void Attack()
     {
         attackTimer = 0;
-
+        TriggerAttackAnimation();
         player.TakeDamage(damage);
     }
+
+    private void TriggerAttackAnimation()
+    {
+        if (!isAttacking && animator != null)
+        {
+            isAttacking = true;
+            
+            try
+            {
+                animator.SetTrigger("Attack");
+                StartCoroutine(AttackSequence());
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Error triggering attack animation: {e.Message}");
+                isAttacking = false;
+            }
+        }
+    }
+
+    private System.Collections.IEnumerator AttackSequence()
+    {
+        yield return new WaitForSeconds(0.7f);
+        isAttacking = false;
+    }
+
     private void OnDrawGizmos()
     {
         if (!gizmos)
@@ -105,3 +171,4 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
     }
 }
+

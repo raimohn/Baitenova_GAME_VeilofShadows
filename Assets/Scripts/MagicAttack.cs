@@ -1,28 +1,68 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MagicAttack : MonoBehaviour
 {
-    public GameObject firePoint; // Точка, откуда выпускается магия
-    public GameObject spellPrefab; // Префаб магического снаряда
-    public MobileJoystick joystick; // Джойстик
+    public MobileJoystick joystick;
     public Button attackButton;
+    public Animator animator;
+    private bool isAttacking = false;
+    private Vector2 lastDirection = Vector2.right;
 
     // Start is called before the first frame update
     void Start()
     {
-        attackButton.onClick.AddListener(Fire);
+        attackButton.onClick.AddListener(Attack);
     }
 
-    void Fire()
+    void Update()
     {
-        if (joystick.GetMoveVector().magnitude > 0.1f) // Проверяем, есть ли направление атаки
+        // РџСЂРѕРІРµСЂСЏРµРј РЅР°Р¶Р°С‚РёРµ РїСЂРѕР±РµР»Р° РґР»СЏ Р°С‚Р°РєРё
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject spell = Instantiate(spellPrefab, firePoint.transform.position, Quaternion.identity);
-            Spell spellScript = spell.GetComponent<Spell>(); // Получаем скрипт Spell
-            spellScript.SetDirection(joystick.GetMoveVector().normalized); // Передаём направление атаки
+            Attack();
         }
+
+        // РћР±РЅРѕРІР»СЏРµРј РЅР°РїСЂР°РІР»РµРЅРёРµ РґРІРёР¶РµРЅРёСЏ
+        Vector2 currentDirection = joystick.GetMoveVector();
+        if (currentDirection.magnitude > 0.1f)
+        {
+            lastDirection = currentDirection;
+        }
+
+        // РћР±РЅРѕРІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹ Р°РЅРёРјР°С†РёРё
+        UpdateAnimationParameters();
+    }
+
+    void UpdateAnimationParameters()
+    {
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїР°СЂР°РјРµС‚СЂС‹ РЅР°РїСЂР°РІР»РµРЅРёСЏ РґР»СЏ blend trees
+        animator.SetFloat("MoveX", lastDirection.x);
+        animator.SetFloat("MoveY", lastDirection.y);
+        animator.SetFloat("Speed", joystick.GetMoveVector().magnitude);
+        
+        // РРЅРІРµСЂС‚РёСЂСѓРµРј X РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕРіРѕ РЅР°РїСЂР°РІР»РµРЅРёСЏ Р°С‚Р°РєРё
+        animator.SetFloat("AttackDirectionX", -lastDirection.x);
+        animator.SetFloat("AttackDirectionY", lastDirection.y);
+    }
+
+    void Attack()
+    {
+        if (!isAttacking)
+        {
+            isAttacking = true;
+            animator.SetTrigger("Attack");
+            StartCoroutine(AttackSequence());
+        }
+    }
+
+    System.Collections.IEnumerator AttackSequence()
+    {
+        // Р–РґРµРј РѕРєРѕРЅС‡Р°РЅРёСЏ Р°РЅРёРјР°С†РёРё Р°С‚Р°РєРё
+        yield return new WaitForSeconds(0.5f);
+        
+        // Р’РѕР·РІСЂР°С‰Р°РµРјСЃСЏ Рє РїСЂРµРґС‹РґСѓС‰РµРјСѓ СЃРѕСЃС‚РѕСЏРЅРёСЋ
+        isAttacking = false;
     }
 }

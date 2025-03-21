@@ -9,6 +9,9 @@ public class EnemyMovement : MonoBehaviour
 
     [Header(" Settings ")]
     [SerializeField] private float moveSpeed;
+    private float stopDistance = 0.5f; // Минимальное расстояние до игрока
+
+    private Vector2 currentDirection;
 
     // Update is called once per frame
     void Update()
@@ -22,12 +25,33 @@ public class EnemyMovement : MonoBehaviour
         this.player = player;
     }
 
+    public void SetStopDistance(float attackRadius)
+    {
+        // Устанавливаем расстояние остановки как 70% от радиуса атаки
+        stopDistance = attackRadius * 0.7f;
+    }
+
     private void FollowPlayer()
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        Vector2 targetPosition = (Vector2)transform.position + direction * moveSpeed * Time.deltaTime;
+        // Если враг находится дальше минимального расстояния, двигаемся к игроку
+        if (distanceToPlayer > stopDistance)
+        {
+            currentDirection = direction;
+            Vector2 targetPosition = (Vector2)transform.position + direction * moveSpeed * Time.deltaTime;
+            transform.position = targetPosition;
+        }
+        else
+        {
+            // Если враг слишком близко, останавливаемся
+            currentDirection = Vector2.zero;
+        }
+    }
 
-        transform.position = targetPosition;
+    public Vector2 GetCurrentDirection()
+    {
+        return currentDirection;
     }
 }
