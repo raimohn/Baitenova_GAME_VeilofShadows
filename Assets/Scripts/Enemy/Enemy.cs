@@ -37,27 +37,12 @@ public class Enemy : MonoBehaviour
         movement = GetComponent<EnemyMovement>();
         animator = GetComponent<Animator>();
 
-        if (animator == null)
-        {
-            Debug.LogError("Animator component not found on enemy!");
-            enabled = false;
-            return;
-        }
-
-        if (enemyRenderer == null)
-        {
-            Debug.LogError("Enemy Renderer not assigned!");
-            enabled = false;
-            return;
-        }
-
         player = FindFirstObjectByType<Player>();
 
         if (player == null)
         {
             Debug.LogWarning("No player found");
             Destroy(gameObject);
-            return;
         }
 
         StartSpawnSequence();
@@ -94,16 +79,20 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hasSpawned || player == null || enemyRenderer == null) return;
+        if (!hasSpawned) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         
-        // Обновляем направление и отзеркаливание
+        // Обновляем направление атаки
         Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
         if (directionToPlayer.magnitude > 0.1f)
         {
             lastAttackDirection = directionToPlayer;
-            enemyRenderer.flipX = directionToPlayer.x > 0;
+            // Отзеркаливаем спрайт в зависимости от направления движения
+            if (!isAttacking) // Не меняем отзеркаливание во время атаки
+            {
+                enemyRenderer.flipX = directionToPlayer.x > 0;
+            }
         }
         
         // Если враг в радиусе атаки
@@ -139,20 +128,13 @@ public class Enemy : MonoBehaviour
 
     private void TriggerAttackAnimation()
     {
-        if (!isAttacking && animator != null)
+        if (!isAttacking)
         {
             isAttacking = true;
-            
-            try
-            {
-                animator.SetTrigger("Attack");
-                StartCoroutine(AttackSequence());
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError($"Error triggering attack animation: {e.Message}");
-                isAttacking = false;
-            }
+
+            // Запускаем анимацию атаки
+            animator.SetTrigger("Attack");
+            StartCoroutine(AttackSequence());
         }
     }
 
