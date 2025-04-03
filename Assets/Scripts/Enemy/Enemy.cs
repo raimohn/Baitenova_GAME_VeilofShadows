@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 [RequireComponent(typeof(EnemyMovement))]
@@ -13,6 +14,11 @@ public class Enemy : MonoBehaviour
 
     [Header(" Elements ")]
     [SerializeField] Player player;
+
+    [Header(" Health ")]
+    [SerializeField] private int maxHealth;
+    private int health;
+    [SerializeField] private TextMeshPro healthText;
 
     [Header(" Spawn Sequence Related ")]
     [SerializeField] private SpriteRenderer enemyRenderer;
@@ -34,6 +40,9 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
+        healthText.text = health.ToString();
+
         movement = GetComponent<EnemyMovement>();
         animator = GetComponent<Animator>();
 
@@ -124,6 +133,17 @@ public class Enemy : MonoBehaviour
         attackTimer = 0;
         TriggerAttackAnimation();
         player.TakeDamage(damage);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        int realDamage = Mathf.Min(damage, health);
+        health -= realDamage;
+
+        healthText.text = health.ToString();
+
+        if (health <= 0 )
+           Destroy(gameObject);
     }
 
     private void TriggerAttackAnimation()
