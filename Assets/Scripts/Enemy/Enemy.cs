@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
     [Header(" Spawn Sequence Related ")]
     [SerializeField] private SpriteRenderer enemyRenderer;
     [SerializeField] private SpriteRenderer spawnIndicator;
+    [SerializeField] private Collider2D collider;
     private bool hasSpawned;
 
     [Header(" Attack ")]
@@ -33,6 +35,9 @@ public class Enemy : MonoBehaviour
     private float attackTimer;
     private bool isAttacking = false;
     private Vector2 lastAttackDirection;
+
+    [Header(" Actions ")]
+    public static Action<int, Vector2> onDamageTaken;
 
     [Header(" Debug ")]
     [SerializeField] private bool gizmos;
@@ -75,6 +80,8 @@ public class Enemy : MonoBehaviour
     {
         SetRenderersVisibility(true);
         hasSpawned = true;
+
+        collider.enabled = true;
 
         movement.StorePlayer(player);
     }
@@ -141,6 +148,8 @@ public class Enemy : MonoBehaviour
         health -= realDamage;
 
         healthText.text = health.ToString();
+
+        onDamageTaken?.Invoke(damage, transform.position);
 
         if (health <= 0 )
            Destroy(gameObject);
