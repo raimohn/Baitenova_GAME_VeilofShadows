@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6a16db74c5ef9147820ea37133a72c1
+guid: c33a5f0ace824fc4e8271e409691f0b0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,43 +123,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_snow_anim-sheet_0
+      name: Enemy 3 run sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1920
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64ca855c25bddbf46ac2f9d2dd524582
-      internalID: -857213985
+      spriteID: e4a1d0b575cc5a84c9fdcc091f57fde8
+      internalID: -1611041268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Background_snow_anim-sheet_1
+      name: Enemy 3 run sheet_1
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 0
-        width: 1920
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba9f6aec5cc04ab4a8b002f6de55e747
-      internalID: -725954139
+      spriteID: b8f17ff189712d448ada8d5a5d03933e
+      internalID: 1899762034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy 3 run sheet_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f634295bf2a9a184bbe991c67ffbc911
+      internalID: 1061961356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy 3 run sheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa2a624a17c4dc4096685139d497994
+      internalID: 812527302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy 3 run sheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dea5bbcb623ff6f4f8afe569d97cf514
+      internalID: 1836381025
       vertices: []
       indices: 
       edges: []
@@ -175,8 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Background_snow_anim-sheet_0: -857213985
-      Background_snow_anim-sheet_1: -725954139
+      Enemy 3 run sheet_0: -1611041268
+      Enemy 3 run sheet_1: 1899762034
+      Enemy 3 run sheet_2: 1061961356
+      Enemy 3 run sheet_3: 812527302
+      Enemy 3 run sheet_4: 1836381025
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -109,6 +109,8 @@ public class Weapon : MonoBehaviour
 
     private void Attack()
     {
+        int damage = GetDamage(out bool isCriticalHit);
+
         //Collider2D[] enemies = Physics2D.OverlapCircleAll(hitDetectionTransform.position, hitDetectionRadius, enemyMask);
         Collider2D[] enemies = Physics2D.OverlapBoxAll
             (
@@ -124,7 +126,7 @@ public class Weapon : MonoBehaviour
 
             if (!damagedEnemies.Contains(enemy))
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, isCriticalHit);
                 damagedEnemies.Add(enemy);
             }
 
@@ -156,6 +158,19 @@ public class Weapon : MonoBehaviour
         }
 
         return closestEnemy;
+    }
+
+    protected int GetDamage(out bool isCriticalHit)
+    {
+        isCriticalHit = false;
+
+        if (Random.Range(0, 101) <= 50)
+        {
+            isCriticalHit = true;
+            return damage * 2;
+        }
+
+        return damage;
     }
 
     private void OnDrawGizmosSelected()

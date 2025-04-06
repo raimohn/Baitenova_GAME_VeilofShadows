@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     private Vector2 lastAttackDirection;
 
     [Header(" Actions ")]
-    public static Action<int, Vector2> onDamageTaken;
+    public static Action<int, Vector2, bool> onDamageTaken;
 
     [Header(" Debug ")]
     [SerializeField] private bool gizmos;
@@ -142,14 +142,14 @@ public class Enemy : MonoBehaviour
         player.TakeDamage(damage);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool isCriticalHit)
     {
         int realDamage = Mathf.Min(damage, health);
         health -= realDamage;
 
         healthText.text = health.ToString();
 
-        onDamageTaken?.Invoke(damage, transform.position);
+        onDamageTaken?.Invoke(damage, transform.position, isCriticalHit);
 
         if (health <= 0 )
            Destroy(gameObject);

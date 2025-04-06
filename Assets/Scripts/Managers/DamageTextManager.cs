@@ -47,14 +47,14 @@ public class DamageTextManager : MonoBehaviour
         Destroy(damageText.gameObject);
     }
 
-    private void EnemyHitCallback(int damage, Vector2 enemyPos)
+    private void EnemyHitCallback(int damage, Vector2 enemyPos, bool isCriticalHit)
     {
-        Vector3 spawnPosition = enemyPos + Vector2.up * 0.1f;
+        Vector3 spawnPosition = enemyPos + Vector2.up * 0.3f;
 
         DamageText damageTextInstance = damageTextPool.Get();
         damageTextInstance.transform.position = spawnPosition;
 
-        damageTextInstance.Animate(damage);
+        damageTextInstance.Animate(damage, isCriticalHit);
 
         LeanTween.delayedCall(1, () => damageTextPool.Release(damageTextInstance));
     }

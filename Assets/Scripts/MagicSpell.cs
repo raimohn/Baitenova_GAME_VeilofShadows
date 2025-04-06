@@ -110,7 +110,9 @@ public class MagicSpell : Weapon
                 rb.velocity = direction * 10f; // Задаём скорость
             }
 
-            bulletInstance.Shoot(damage, GetAttackDirection());
+            int damage = GetDamage(out bool isCriticalHit);
+
+            bulletInstance.Shoot(damage, GetAttackDirection(), isCriticalHit);
         }
     }
 

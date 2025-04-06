@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6a16db74c5ef9147820ea37133a72c1
+guid: 86738b99ed94d1a4486d546b09e3f310
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_snow_anim-sheet_0
+      name: Background_snow_anim2-sheet-sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64ca855c25bddbf46ac2f9d2dd524582
-      internalID: -857213985
+      spriteID: e9a2a9bd97ada1241a89f9144cb02b33
+      internalID: -1896629266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Background_snow_anim-sheet_1
+      name: Background_snow_anim2-sheet-sheet_1
       rect:
         serializedVersion: 2
         x: 1920
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba9f6aec5cc04ab4a8b002f6de55e747
-      internalID: -725954139
+      spriteID: 861a8c2e995282649be9f079608eab87
+      internalID: 792833874
       vertices: []
       indices: 
       edges: []
@@ -175,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Background_snow_anim-sheet_0: -857213985
-      Background_snow_anim-sheet_1: -725954139
+      Background_snow_anim2-sheet-sheet_0: -1896629266
+      Background_snow_anim2-sheet-sheet_1: 792833874
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

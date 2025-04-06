@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private LayerMask enemyMask;
     private int damage;
+    private bool isCriticalHit;
 
     private void Awake()
     {
@@ -36,9 +37,10 @@ public class Bullet : MonoBehaviour
         
     }
 
-    public void Shoot(int damage, Vector2 direction)
+    public void Shoot(int damage, Vector2 direction, bool isCriticalHit)
     {
         this.damage = damage;
+        this.isCriticalHit = isCriticalHit;
 
         transform.right = direction;
         rig.velocity = direction * moveSpeed;
@@ -55,7 +57,7 @@ public class Bullet : MonoBehaviour
 
     private void Attack(Enemy enemy)
     {
-        enemy.TakeDamage(damage);
+        enemy.TakeDamage(damage, isCriticalHit);
     }
     private bool IsInLayerMask(int layer, LayerMask layerMask)
     {
