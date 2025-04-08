@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
 
     [Header(" Actions ")]
     public static Action<int, Vector2, bool> onDamageTaken;
+    public static Action<Vector2> onPassedAway;
 
     [Header(" Debug ")]
     [SerializeField] private bool gizmos;
@@ -151,8 +152,15 @@ public class Enemy : MonoBehaviour
 
         onDamageTaken?.Invoke(damage, transform.position, isCriticalHit);
 
-        if (health <= 0 )
-           Destroy(gameObject);
+        if (health <= 0)
+            PassAway();
+    }
+
+    private void PassAway()
+    {
+        onPassedAway?.Invoke(transform.position);
+
+            Destroy(gameObject);
     }
 
     private void TriggerAttackAnimation()
