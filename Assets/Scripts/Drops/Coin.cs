@@ -1,12 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class Essence : DroppableCurrency
+public class Coin : DroppableCurrency
 {
     [Header(" Actions ")]
-    public static Action<Essence> onCollected;
+    public static Action<Coin> onCollected;
 
     protected override void Collected()
     {

@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     [Header(" Spawn Sequence Related ")]
     [SerializeField] private SpriteRenderer enemyRenderer;
     [SerializeField] private SpriteRenderer spawnIndicator;
-    [SerializeField] private Collider2D collider;
+    [SerializeField] private Collider2D enemyCollider;
     private bool hasSpawned;
 
     [Header(" Attack ")]
@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
         SetRenderersVisibility(true);
         hasSpawned = true;
 
-        collider.enabled = true;
+        enemyCollider.enabled = true;
 
         movement.StorePlayer(player);
     }

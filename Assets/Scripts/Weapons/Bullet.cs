@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 {
     [Header(" Elements ")]
     private Rigidbody2D rig;
-    private Collider2D collider;
+    private Collider2D bulletCollider;
 
     [Header(" Settings ")]
     [SerializeField] private float moveSpeed;
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         rig = GetComponent<Rigidbody2D>();
-        collider = GetComponent<Collider2D>();
+        bulletCollider = GetComponent<Collider2D>();
 
         //LeanTween.delayedCall(gameObject, 5, () => rangeEnemyAttack.ReleaseBullet(this));
     }
