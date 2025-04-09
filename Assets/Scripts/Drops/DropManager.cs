@@ -9,6 +9,11 @@ public class DropManager : MonoBehaviour
     [Header(" Elements ")]
     [SerializeField] private Essence essencePrefab;
     [SerializeField] private Coin coinPrefab;
+    [SerializeField] private Chest chestPrefab;
+
+    [Header(" Settings ")]
+    [SerializeField] [Range(0, 100)] private int cashDropChance;
+    [SerializeField] [Range(0, 100)] private int chestDropChance;
 
     [Header (" Pooling ")]
     private ObjectPool<Essence> essencePool;
@@ -63,10 +68,22 @@ public class DropManager : MonoBehaviour
 
     private void EnemyPassedAwayCallBack(Vector2 enemyPosition)
     {
-        bool shouldSpawnCoin = UnityEngine.Random.Range(0, 101) <= 20;
+        bool shouldSpawnCoin = UnityEngine.Random.Range(0, 101) <= cashDropChance;
 
         DroppableCurrency droppable = shouldSpawnCoin ? coinPool.Get() : essencePool.Get();
         droppable.transform.position = enemyPosition;
+
+        TryDropChest(enemyPosition);
+    }
+
+    private void TryDropChest(Vector2 spawnPosition)
+    {
+        bool shouldSpawnChest = UnityEngine.Random.Range(0, 101) <= chestDropChance;
+
+        if (!shouldSpawnChest)
+            return;
+
+        Instantiate(chestPrefab, spawnPosition, Quaternion.identity, transform);
     }
 
     private void ReleaseEssence(Essence essence) => essencePool.Release(essence);
