@@ -103,6 +103,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest Renderer
       objectReference: {fileID: 0}
+    - target: {fileID: 1160356261127867848, guid: 68bf29392897a314b8384edb3a8e9221, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 68bf29392897a314b8384edb3a8e9221, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

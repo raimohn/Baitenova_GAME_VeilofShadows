@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -31,7 +30,12 @@ public class PlayerHealth : MonoBehaviour
         UpdateUI();
 
         if (health <= 0)
-            health = 0;
+            PassAway();
+    }
+     
+    private void PassAway()
+    {
+        GameManager.instance.SetGameState(GameState.GAMEOVER);
     }
 
     private void UpdateUI()
